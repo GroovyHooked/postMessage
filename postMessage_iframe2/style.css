@@ -1,0 +1,13 @@
+body {
+  background-color: rgb(193, 96, 96);
+}
+.display{
+  width: 90%;
+  height: 100px;
+  background-color: white;
+  overflow: auto;
+}
+p{
+  margin: 0;
+  padding: 0;
+}
