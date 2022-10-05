@@ -21,12 +21,7 @@ addEventListener('message', (e) => {
 
 function sendMesage() {
   if (window && window.parent) {
-    window.parent.postMessage(
-      {
-        message: message,
-      },
-      'http://127.0.0.1:5501'
-    );
+    window.parent.postMessage({ message }, 'http://127.0.0.1:5501');
   }
 }
 
