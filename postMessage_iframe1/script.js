@@ -16,14 +16,14 @@ buttonIframe.addEventListener('click', sendMesage);
 addEventListener('message', (e) => {
   if (e.data.message === undefined) return;
   displaymessages(e.data.message);
+  display.scrollTop = display.scrollHeight;
 });
 
 function sendMesage() {
   if (window && window.parent) {
-    window.parent.postMessage({ message }, 'http://127.0.0.1:5501');
+    window.parent.postMessage({ message }, 'http://127.0.0.1:5500');
   }
   textNode.value = '';
-  display.scrollTop = display.scrollHeight;
 }
 
 function extractOrigin(url) {
@@ -36,8 +36,15 @@ function displaymessages(messages) {
   while (display.firstChild) display.removeChild(display.firstChild);
   messages.forEach((message) => {
     const msg = document.createElement('p');
-    msg.innerText =
-      (message[0] === 'iframe1' ? 'me' : message[0]) + ': ' + message[1];
+    message[0] === 'iframe1'
+      ? (msg.style.backgroundColor = '#87dcff')
+      : (msg.style.backgroundColor = 'blanchedalmond');
+    msg.innerHTML =
+      (message[0] === 'iframe1'
+        ? '<span style="color:blue;"">me</span>'
+        : message[0]) +
+      ': ' +
+      message[1];
     display.append(msg);
   });
 }
