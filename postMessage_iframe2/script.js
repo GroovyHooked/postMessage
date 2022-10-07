@@ -1,5 +1,5 @@
 const buttonIframe = document.getElementById('submitiframe');
-const textNode = document.getElementById('message1');
+const textNode = document.getElementById('message');
 const display = document.querySelector('.display');
 const port = document.querySelector('.port');
 let messages;
@@ -15,7 +15,6 @@ buttonIframe.addEventListener('click', sendMesage);
 
 addEventListener('message', (e) => {
   if (e.data.message === undefined) return;
-  console.log('received in iframe 1', e.data.message);
   displaymessages(e.data.message);
 });
 
@@ -23,6 +22,8 @@ function sendMesage() {
   if (window && window.parent) {
     window.parent.postMessage({ message }, 'http://127.0.0.1:5501');
   }
+  textNode.value = '';
+  display.scrollTop = display.scrollHeight;
 }
 
 function extractOrigin(url) {
@@ -35,7 +36,8 @@ function displaymessages(messages) {
   while (display.firstChild) display.removeChild(display.firstChild);
   messages.forEach((message) => {
     const msg = document.createElement('p');
-    msg.innerText = message[0] + ': ' + message[1];
+    msg.innerText =
+      (message[0] === 'iframe2' ? 'me' : message[0]) + ': ' + message[1];
     display.append(msg);
   });
 }

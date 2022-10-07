@@ -1,11 +1,18 @@
 body {
   background-color: rgb(163, 163, 218);
 }
+.container {
+  height: 100vh;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
 .display{
   width: 90%;
   height: 100px;
   background-color: white;
   overflow: auto;
+  padding: 2px;
 }
 p{
   margin: 0px;
