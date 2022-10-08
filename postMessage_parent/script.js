@@ -5,6 +5,11 @@ for (let i = 0; i <= Object.keys(recoveredMessages).length; i++) {
   if (recoveredMessages[i] === undefined) continue;
   messages.push(recoveredMessages[i]);
 }
+if (Object.keys(recoveredMessages).length > 0) {
+  window.addEventListener('load', () => {
+    sendpostMessages(messages);
+  });
+}
 
 addEventListener('message', (e) => {
   handleMessage(e);
