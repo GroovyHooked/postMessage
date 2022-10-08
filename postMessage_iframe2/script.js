@@ -41,7 +41,7 @@ function displaymessages(messages) {
       : (msg.style.backgroundColor = 'blanchedalmond');
     msg.innerHTML =
       (message[0] === 'iframe2'
-        ? '<span style="color:blue;"">me</span>'
+        ? '<span style="color:blue;"">my-frame</span>'
         : `<span style="color:red">${message[0]}</span>`) +
       ': ' +
       message[1];
