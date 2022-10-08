@@ -18,12 +18,6 @@ function handleMessage(event) {
   }
 }
 
-function storeAndExtractMessages(messages) {
-  localStorage.setItem('storage', JSON.stringify(messages));
-  const storage = JSON.parse(localStorage.getItem('storage'));
-  return storage;
-}
-
 function sendpostMessages(callback, messages) {
   const ports = ['5501', '5502'];
   for (let i = 0; i < 2; i++) {
@@ -32,4 +26,10 @@ function sendpostMessages(callback, messages) {
       `http://127.0.0.1:${ports[i]}`
     );
   }
+}
+
+function storeAndExtractMessages(messages) {
+  localStorage.setItem('storage', JSON.stringify(messages));
+  const storage = JSON.parse(localStorage.getItem('storage'));
+  return storage;
 }
