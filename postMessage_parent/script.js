@@ -1,15 +1,16 @@
 const recoveredMessages = JSON.parse(localStorage.getItem('storage'));
-const messages = [];
+let messages = [];
+const clearStorageButton = document.querySelector('.clearStorage');
 
-for (let i = 0; i <= Object.keys(recoveredMessages).length; i++) {
-  if (recoveredMessages[i] === undefined) continue;
-  messages.push(recoveredMessages[i]);
+if (recoveredMessages !== null) {
+  for (let i = 0; i <= Object.keys(recoveredMessages).length; i++) {
+    if (recoveredMessages[i] === undefined) continue;
+    messages.push(recoveredMessages[i]);
+  }
 }
-if (Object.keys(recoveredMessages).length > 0) {
-  window.addEventListener('load', () => {
-    sendpostMessages(messages);
-  });
-}
+window.addEventListener('load', () => {
+  sendpostMessages(messages);
+});
 
 addEventListener('message', (e) => {
   handleMessage(e);
@@ -29,6 +30,8 @@ function handleMessage(event) {
 }
 
 function sendpostMessages(messages) {
+  if (messages !== '')
+    localStorage.setItem('storage', JSON.stringify(messages));
   console.log('parent', { messages });
   const ports = ['5501', '5502'];
   for (let i = 0; i < 2; i++) {
@@ -38,3 +41,9 @@ function sendpostMessages(messages) {
     );
   }
 }
+
+clearStorageButton.addEventListener('click', () => {
+  localStorage.clear();
+  messages = [];
+  sendpostMessages('');
+});

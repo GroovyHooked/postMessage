@@ -14,6 +14,10 @@ textNode.addEventListener('input', (event) => {
 buttonIframe.addEventListener('click', sendMesage);
 
 addEventListener('message', (e) => {
+  if (e.data.message === '') {
+    while (display.firstChild) display.removeChild(display.firstChild);
+    return;
+  }
   if (e.data.message === undefined) return;
   displaymessages(e.data.message);
   display.scrollTop = display.scrollHeight;
