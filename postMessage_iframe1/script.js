@@ -8,25 +8,31 @@ let message;
 port.innerText = extractOrigin(window.location.href);
 
 textNode.addEventListener('input', (event) => {
+  if(event.data == null) {
+    sendMesage()
+   }
   message = event.target.value;
 });
 
 buttonIframe.addEventListener('click', sendMesage);
+window.addEventListener('message', (e) => handleEvent(e));
 
-addEventListener('message', (e) => {
-  if (e.data.message === '') {
+function handleEvent(event) {
+  if (event.data.message === '') {
     while (display.firstChild) display.removeChild(display.firstChild);
     return;
   }
-  if (e.data.message === undefined) return;
-  displaymessages(e.data.message);
+  if (event.data.message === undefined) return;
+  displaymessages(event.data.message);
   display.scrollTop = display.scrollHeight;
-});
+}
 
 function sendMesage() {
+  if (message === '') return;
   if (window && window.parent) {
     window.parent.postMessage({ message }, 'http://127.0.0.1:5500');
   }
+  message = '';
   textNode.value = '';
 }
 

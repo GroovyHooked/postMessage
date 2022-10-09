@@ -1,3 +1,8 @@
+* {
+	padding: 0;
+	margin: 0;
+	}
+
 body {
   background-color: #2A9D8F;
 }
@@ -10,7 +15,7 @@ body {
 }
 
 .display{
-  width: 97%;
+  width: 90%;
   height: 100px;
   background-color: white;
   overflow: auto;
@@ -18,9 +23,21 @@ body {
   margin: 0 auto;
 }
 
+textarea{
+  font-size: 15px;
+  width: 70%;
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
 h1{
   color: #264653;
   text-align: center;
+  font-family: sans-serif;
 }
 
 p{
@@ -28,7 +45,15 @@ p{
   padding: 0;
 }
 
-#submitiframe{
-  position: relative;
-  top: -13px;
+#submitiframe {
+  width: 17%;
+  font-size: 15px;
+  border: 1px solid #E76F51;
+  background-color: #fff;
+  box-shadow: 0 0 5px -1px#264653;
+  cursor: pointer;
+}
+
+#submitiframe:active {
+  color: rgb(131, 130, 130);
 }
