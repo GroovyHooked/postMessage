@@ -8,13 +8,10 @@ if (recoveredMessages !== null) {
     messages.push(recoveredMessages[i]);
   }
 }
-window.addEventListener('load', () => {
-  sendpostMessages(messages);
-});
 
-addEventListener('message', (e) => {
-  handleMessage(e);
-});
+window.addEventListener('load', () => sendpostMessages(messages));
+window.addEventListener('message', (e) => handleMessage(e));
+clearStorageButton.addEventListener('click', () => clearStorageAndDisplay());
 
 function handleMessage(event) {
   if (event.origin === 'http://127.0.0.1:5501') {
@@ -42,8 +39,8 @@ function sendpostMessages(messages) {
   }
 }
 
-clearStorageButton.addEventListener('click', () => {
+function clearStorageAndDisplay() {
   localStorage.clear();
   messages = [];
   sendpostMessages('');
-});
+}
