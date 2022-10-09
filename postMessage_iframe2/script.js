@@ -39,6 +39,7 @@ function extractOrigin(url) {
 function displaymessages(messages) {
   while (display.firstChild) display.removeChild(display.firstChild);
   messages.forEach((message) => {
+    if (message[1] === undefined || message[1] === null) return;
     const msg = document.createElement('p');
     message[0] === 'iframe2'
       ? (msg.style.backgroundColor = '#87dcff')
